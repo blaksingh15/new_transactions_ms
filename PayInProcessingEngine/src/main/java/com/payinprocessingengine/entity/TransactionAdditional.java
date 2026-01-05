@@ -1,5 +1,5 @@
 package com.payinprocessingengine.entity;
- class TransactionAdditional {
+ public class TransactionAdditional {
     private Long id;
     private Long transIDAd;
 

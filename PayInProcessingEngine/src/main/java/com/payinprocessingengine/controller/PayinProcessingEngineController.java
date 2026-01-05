@@ -28,6 +28,10 @@ import com.payinprocessingengine.entity.Connector;
 import com.payinprocessingengine.entity.Orchestration;
 import com.payinprocessingengine.entity.Terminal;
 import com.payinprocessingengine.entity.Transaction;
+import com.payinprocessingengine.entity.TransactionAdditional;
+import com.payinprocessingengine.util.AES256Api;
+import com.payinprocessingengine.util.AES256Util;
+import com.payinprocessingengine.util.Base64Util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +60,10 @@ public class PayinProcessingEngineController {
 
 //	@Autowired
 //	private TerminalDao terminalDao; 
+	
+//	@Autowired
+//	private ApiCardInfoCashfreeUtility apiCardInfoCashfreeUtility;
+	
 
 	@Value("${production.domains}")
 	private String productionDomains;
@@ -91,8 +99,7 @@ public class PayinProcessingEngineController {
 		return defaultUrl;
 	}
 
-	@Autowired
-	private ApiCardInfoCashfreeUtility apiCardInfoCashfreeUtility;
+	
 	public static String connector_id = "";
 	public static String auth_3ds = "";
 	public static String return_status_url = "";
@@ -177,9 +184,7 @@ public class PayinProcessingEngineController {
 					System.out.println("JQP: " + jqp);
 				}
 			}
-			if (jqp > 0) {
-				System.out.println("\r == adds2s === Request: " + request);
-			}
+			
 	        Transaction transaction = new Transaction();
 			TransactionAdditional transactionAdditional = new TransactionAdditional();
 			Map<String, Object> authDataMap = new HashMap<>();
@@ -276,14 +281,6 @@ public class PayinProcessingEngineController {
 							
 							res_ter.put("connectorkey", connectorkey);
 						}
-
-						if (request.containsKey("jqp")) 
-						{	
-							System.out.println("Connectorkey: " + connectorkey);
-							System.out.println("Fetch apc_json_ter_de : " + apc_json_ter_de);
-							System.out.println("Fetch apc_json_ter : " + apc_json_ter); 
-						}
-						
 					
 					}
 
@@ -324,10 +321,6 @@ public class PayinProcessingEngineController {
 			if (request.containsKey("encrypted_data") && request.get("encrypted_data") != null && !request.get("encrypted_data").toString().isEmpty() && request.get("encrypted_data").toString().length() > publicKeyLength && privateKey != null && !privateKey.isEmpty()) {	
 				try {
 					String encryptedPayload = request.get("encrypted_data").toString();
-
-					if (jqp > 0) System.out.println("\r encrypted_data: " + encryptedPayload);
-
-					// Split encryptedPayload into data and public key parts
 					String encryptedPayloadEnd = encryptedPayload.substring(0, encryptedPayload.length() - publicKeyLength);
 					String last44Chars_publicKey = "";
 
@@ -503,34 +496,22 @@ public class PayinProcessingEngineController {
 						connectorData.put("autoStatusStartTime", connector.getAutoStatusStartTime());
 						connectorData.put("autoStatusIntervalTime", connector.getAutoStatusIntervalTime());
 						connectorData.put("cronBankStatusResponse", connector.getCronBankStatusResponse());
-						
-
-						// Currency Converter 
 						Boolean currConverter = false;
 						String connectorProcessingCurrency = connector.getConnectorProcessingCurrency();
 						if (connectorProcessingCurrency != null) {
 							transaction.setBankProcessingCurrency(connectorProcessingCurrency);
 							currConverter = true;
 						}
-
-
 						if (connectorProcessingCurrency != null && currConverter && bill_currency != null && !bill_currency.isEmpty() && !bill_currency.equals(connectorProcessingCurrency) && total_payment != null && total_payment > 0) 
 						{
-						    
-						    // First set all the request parameters
-						    request.put("start_currency", bill_currency);
+					       request.put("start_currency", bill_currency);
 						    request.put("start_on_total_payment", total_payment);
 						    request.put("bank_processing_currency", connectorProcessingCurrency);
 							orderCurrency = connectorProcessingCurrency;
-						   
-
-						    // Wrap the currency conversion in a try-catch block for better error handling
 						    try {
 						        Map<String, Object> conversionResult = CurrencyExchangeApiController.commonDbCurrencyConverter(
 						            currencyExchangeApiService, bill_currency, connectorProcessingCurrency, total_payment_str, "tr", "false");
-
 						        if (conversionResult.get("error") != null) {
-						            System.out.println("Currency conversion error: " + conversionResult.get("error"));
 						            return ResponseEntity.badRequest().body(createErrorResponse("5003", "Error in currency converter: " + conversionResult.get("error")));
 						        }
 
@@ -544,7 +525,6 @@ public class PayinProcessingEngineController {
 								request.put("bill_amt", convertedAmount);
 
 						    } catch (Exception e) {
-						        System.out.println("Exception in currency conversion: " + e.getMessage());
 						        e.printStackTrace();
 						        return ResponseEntity.badRequest().body(Map.of("error", "Error in conversion result: " + e.getMessage()));
 						    }
@@ -576,9 +556,7 @@ public class PayinProcessingEngineController {
 
 				if(ccno != null && ccno.length() > 0) 
 				{
-
 					transactionAdditional.setCcno(ccno);
-					
 					try {
 						
 						JSONObject cardInfoJson = apiCardInfoCashfreeUtility.cardBinF(ccno);
@@ -611,9 +589,7 @@ public class PayinProcessingEngineController {
 						return ResponseEntity.badRequest().body(createErrorResponse("5002", "Error fetching card info: " + e.getMessage()));
 
 					}
-				} else {
-					System.out.println("ccno is empty or null, skipping card info fetch.");	
-				}
+				} 
 			}
 
 			Boolean isTestCardCheck = true;
@@ -623,7 +599,6 @@ public class PayinProcessingEngineController {
 			String blacklistPrintMessage = "";
 			String blacklistTerm = "";
 			String blacklistTermType = "";
-
 			if(connector_id != null && !connector_id.isEmpty() && merID != null && !merID.isEmpty()) {
 					
 				try {
@@ -643,7 +618,6 @@ public class PayinProcessingEngineController {
 					
 				} catch (Exception e) {
 					isBlackListCheck = true;
-					System.err.println("Error parsing blacklist: " + e.getMessage());
 					e.printStackTrace();
 					return ResponseEntity.badRequest().body(Map.of("error", "Error parsing blacklist: " + e.getMessage()));
 					
@@ -663,10 +637,7 @@ public class PayinProcessingEngineController {
 			Orchestration rule = null;
 			try {
 				rule = orchestrationValidationService.findMatchingRule(merID, feeId, request, messageOrchestration);
-				System.out.println("Orchestration validation result: " + (rule != null ? "Rule found - " + rule.getRuleId() : "No rule found"));
-				System.out.println("Message: " + messageOrchestration.toString());
 			} catch (Exception e) {
-				System.out.println("❌ Error in orchestration validation: " + e.getMessage());
 				e.printStackTrace();
 				return ResponseEntity.badRequest().body(createErrorResponse("5007", "Error in orchestration validation: " + e.getMessage()));
 			}
@@ -682,7 +653,6 @@ public class PayinProcessingEngineController {
 						if (act.startsWith("gateway_to:")) {
 							String targetConnector = act.substring("gateway_to:".length()).trim();
 							if (feeId != null && String.valueOf(feeId).equals(targetConnector)) {
-								System.out.println("✅ APPROVED: Routing to fee gateway " + targetConnector);
 								blacklistPrintMessage = messageOrchestration.toString();
 								isBlackListCheck = false;
 								isOrchestrationRules = true;
@@ -693,7 +663,6 @@ public class PayinProcessingEngineController {
 						}
 						else if (act.startsWith("block:")) {
 							String reason = act.substring("block:".length()).trim();
-							System.out.println("❌ GLOBAL BLOCK: " + reason);
 							blacklistPrintMessage = messageOrchestration.toString();
 							isBlackListCheck = false;
 							isOrchestrationRules = true;
@@ -707,7 +676,6 @@ public class PayinProcessingEngineController {
 							try {
 								if (matcher.find()) {
 									feeAmount = Double.parseDouble(matcher.group(1));
-									System.out.println("✅ Applying Fee: " + feeAmount);
 								} else {
 									throw new IllegalArgumentException("No valid fee amount found in: " + feeAmountStr);
 								}
@@ -771,9 +739,7 @@ public class PayinProcessingEngineController {
 			Integer vqp = 0;
 			if (request.containsKey("vqp") && request.get("vqp") != null) {
 				vqp = Integer.parseInt(request.get("vqp").toString());
-				if (vqp > 0) {
-					System.out.println("VQP: " + vqp);
-				}
+				
 			}
 
 			if (isBlackListCheck || !isOrchestrationRules) 
@@ -996,10 +962,6 @@ public class PayinProcessingEngineController {
 			
 				webhookhandler_s2s_transid_url = baseUrl + "status/webhook/s2s/transid/" + savedTransaction.getTransID();
 		   }
-
-
-
-
 		   
 			if (request.containsKey("integration_type") && request.get("integration_type").toString().equals("checkout-s2s") && !isTestCardCheck && isTestEnrollmentType.equals("3DS")) {
 				baseUrl = dynamicOtpAuthUrl + "/api/";
@@ -1009,7 +971,6 @@ public class PayinProcessingEngineController {
 			if (request.containsKey("encryption_method") && request.get("encryption_method") != null && !request.get("encryption_method").toString().isEmpty() && request.get("encryption_method").equals("aes256")) {
 				encryptTransID = AES256Util.encrypt(savedTransaction.getTransID().toString());
 				authurl = baseUrl + "authurl/" + encryptTransID;
-				//test3dsecureauthentication = baseUrl + "authurl/test3dsecureauthentication/" + encryptTransID;
 				test3dsecureauthentication = dynamicOtpAuthUrl + "/otp-auth?transID=" + encryptTransID;
 
 				transaction.setIntegrationType(transaction.getIntegrationType().toString()+"_"+request.get("encryption_method").toString());
@@ -1044,12 +1005,9 @@ public class PayinProcessingEngineController {
 				payaddress = test3dsecureauthentication;
 				authurl = auth_3ds = test3dsecureauthentication;
 			}
-
-
 			 request.put("total_payment", total_payment);
 			 request.put("total_payment_str", total_payment_str);
 			 request.put("orderCurrency", orderCurrency);
- 
 			 connectorData.put("total_payment", total_payment);
 			 connectorData.put("total_payment_str", total_payment_str);
 			 connectorData.put("orderCurrency", orderCurrency);
@@ -1057,12 +1015,7 @@ public class PayinProcessingEngineController {
 			 connectorData.put("webhookhandler_url", webhookhandler_url);
 			 connectorData.put("webhookhandler_transid_url", webhookhandler_transid_url);
 			 connectorData.put("webhookhandler_s2s_transid_url", webhookhandler_s2s_transid_url);
- 
-			
-			// retrun response for black list check
 			if(!isBlackListCheck && blacklistPrintMessage != null && !blacklistPrintMessage.isEmpty()) {
-				// Print the blacklist message
-				// Return an error response if blacklisted
 				return ResponseEntity.status(HttpStatus.SC_FORBIDDEN).body(Map.of(
 					"status", "error",
 					"transID", transID,
@@ -1071,28 +1024,17 @@ public class PayinProcessingEngineController {
 				));
 			} 
 
-			//100 include connector payin for connector class ============
 			if(connector_payin != null && connectorData !=null && credentials !=null && isBlackListCheck && isTestCardCheck ) {
 							
-					
-				//########100	PAYIN FILE PATH example : neo_backend/src/main/java/com/webapp/controller/payin/pay_100/Connector_100.java	//#############
 				try {
-					// Get the connector class dynamically
 					String connectorClassName = "com.webapp.controller.payin.pay_" + connector_payin + ".Connector_" + connector_payin;
 					Class<?> connectorClass = Class.forName(connectorClassName);
-					
-					// Create an instance of the connector
 					Object connectorInstance = connectorClass.getDeclaredConstructor().newInstance();
-					
-					// Get the mapPayload method
 					Method mapPayloadMethod = connectorClass.getMethod("mapPayload", Object.class);
-					
-					// Create the payload object
 					Map<String, Object> payload = new HashMap<>();
 					payload.putAll(connectorData);
 					payload.put("transID", transID);
 					
-					// Add card fields back to request for connector processing
 					if (ccnoForConnector != null) {
 						request.put("ccno", ccnoForConnector);
 					}
@@ -1107,37 +1049,11 @@ public class PayinProcessingEngineController {
 					}
 					
 					payload.put("request", request);  // Add the request parameter to the payload
-					// Add both to payload
 					payload.put("apc_get", credentials);  // Parsed JSON object as live or test from connectorProcessingCredsJson
 					
-
-
-
-
-					//100 Call the mapPayload method dynamically file wise and passing payload for connector and request ####100########
-					Object mappedPayload = mapPayloadMethod.invoke(connectorInstance, payload);
-
-
-
-
-
-					
-					// Use the mapped payload
-					System.out.println("Mapped payload: " + mappedPayload);
-					
-					// Store the mapped payload for further processing
+					Object mappedPayload = mapPayloadMethod.invoke(connectorInstance, payload);		
 					ser.setAttribute("mappedPayload", mappedPayload);  // Using request instead of ser
-					
 
-
-
-
-
-
-
-					// After getting mappedPayload
-
-					// Prepare the respone form payload as per connector retrun
 					Map<String, Object> authMap = new HashMap<>();
 					@SuppressWarnings("unchecked")
 					Map<String, Object> mappedResponseMap = (Map<String, Object>) mappedPayload;
@@ -1145,25 +1061,19 @@ public class PayinProcessingEngineController {
 					authMap.put("connector_authurl", auth_3ds); // set auth_3ds URL
 					
 					if (mappedResponseMap.containsKey("connector_ref")) {
-						// Extracting connector_ref
 						String connector_ref = mappedResponseMap.get("connector_ref").toString();
 						transactionAdditional.setConnectorRef(connector_ref);
 						authMap.put("connector_ref", connector_ref); 
 					}
 
-					//if connector_status_code then update the transactionStatus and connector_status_code is not null and not empty via real time response
 					if (mappedResponseMap.containsKey("connector_status_code")) {
 						Object statusCodeObj = mappedResponseMap.get("connector_status_code");
 						if (statusCodeObj != null && !statusCodeObj.toString().isEmpty()) {
 							try {
 								String connectorStatusCode = statusCodeObj.toString();
 								short transactionStatus = (short) Integer.parseInt(connectorStatusCode);
-								
-								// Update transaction status
 								transaction.setTransactionStatus(transactionStatus);
 								transactionService.saves2sTrans(transaction);
-								
-								// Extract and set connector_response_msg if available
 								if (mappedResponseMap.containsKey("connector_response_msg")) {
 									Object responseMsgObj = mappedResponseMap.get("connector_response_msg");
 									if (responseMsgObj != null && !responseMsgObj.toString().isEmpty()) {
@@ -1171,51 +1081,19 @@ public class PayinProcessingEngineController {
 									}
 								}
 								
-								System.out.println("Updated transaction status to: " + transactionStatus + " (connector_status_code: " + connectorStatusCode + ")");
 							} catch (NumberFormatException e) {
-								System.err.println("Error parsing connector_status_code: " + statusCodeObj.toString() + " - " + e.getMessage());
 								e.printStackTrace();
 							}
 						}
 					}
 
-					
-
-					// Assuming parsedResponse is already defined
 					if (mappedResponseMap.containsKey("gateway_response")) {
-						// Extracting gateway_response
 						@SuppressWarnings("unchecked")
 						String connector_response = Base64Util.encodeBase64(jsonen((Map<String, Object>) mappedResponseMap.get("gateway_response")));
 						transactionAdditional.setConnectorResponse(connector_response);
 						authMap.put("gateway_response", mappedResponseMap.get("gateway_response")); 
 					}
 					
-					
-					/* 
-					// Prepare authDataMap for updating
-					Map<String, Object> authDataMap = new HashMap<>();
-
-					authDataMap.put("transID", transID);
-					authDataMap.put("action", "redirect");
-					authDataMap.put("payamt", Double.parseDouble(request.get("bill_amt").toString()));
-					authDataMap.put("paycurrency", request.get("bill_currency").toString());
-					authDataMap.put("paytitle", request.get("product_name").toString()); // from dba
-					if (mappedResponseMap.containsKey("connector_payaddress")) {
-						authDataMap.put("payaddress", mappedResponseMap.get("connector_payaddress")); //Extracting payaddress
-					}
-					if (mappedResponseMap.containsKey("connector_authdata")) {
-						authDataMap.put("authdata", mappedResponseMap.get("connector_authdata")); //Extracting connector_authdata
-					}
-					
-					authMap.put("connector_authdata", authDataMap); // set authDataMap
-
-					transactionAdditional.setAuthUrl(auth_3ds);
-					String authdata64 = Base64Util.encodeBase64(jsonen(authDataMap));
-					transactionAdditional.setAuthData(authdata64);
-					
-					transactionService.saves2sTransAdditional(transactionAdditional);
-					*/
-
 					isSaveAuthData = true;
 					if (mappedResponseMap.containsKey("connector_payaddress")) {
 						payaddress = mappedResponseMap.get("connector_payaddress").toString(); //Extracting connector_payaddress
@@ -1238,26 +1116,17 @@ public class PayinProcessingEngineController {
 						response_action = mappedResponseMap.get("connector_response_action").toString(); //Extracting connector_response_action
 					}
 					
-					
-
-					// Check if the request contains "qp" for quick processing response enbale
 					if (jqp == 1) {
-						// Return success or continue processing
 						return ResponseEntity.ok().body(Map.of(
 							"status", "success",
 							"message", "Connector processed successfully",
 							"transID", transID,
-							//"auth_res", authMap,
 							"payload_res", mappedPayload
 						));
 					}
 					
 				} catch (ClassNotFoundException e) {
-					// Log the error instead of exiting
-					System.err.println("Connector class not found: " + e.getMessage());
 					e.printStackTrace();
-					
-					// Return an error response
 					return ResponseEntity.status(HttpStatus.SC_NOT_FOUND).body(Map.of(
 						"status", "error",
 						"message", "Connector not found: " + connector_payin,
@@ -1265,11 +1134,7 @@ public class PayinProcessingEngineController {
 					));
 					
 				} catch (Exception e) {
-					// Log the error instead of exiting
-					System.err.println("Error processing connector: " + e.getMessage());
 					e.printStackTrace();
-					
-					// Return an error response
 					return ResponseEntity.status(HttpStatus.SC_INTERNAL_SERVER_ERROR).body(Map.of(
 						"status", "error",
 						"message", "Error processing connector",
@@ -1278,20 +1143,13 @@ public class PayinProcessingEngineController {
 				}
 			}	
 			
-			// save authdata for 3ds and update authdata map
 			if(isSaveAuthData) {
-				
-
-				//authDataMap.put("transID", transID);
-				//authDataMap.put("transID_saved", savedTransaction.getTransID());
-				//response_action
 				if (response_action != null && !response_action.isEmpty()) {
 					authDataMap.put("action", response_action);
 				}
 				else {
 					authDataMap.put("action", "redirect");
 				}
-				//payamt 
 				if (payamt != null && !payamt.isEmpty()) {
 					authDataMap.put("payamt", Double.parseDouble(payamt));
 				} 
@@ -1320,8 +1178,7 @@ public class PayinProcessingEngineController {
 				if (authdata != null) {
 					authDataMap.put("authdata", authdata); //Extracting connector_authdata
 				}
-				
-				//authMap.put("connector_authdata", authDataMap); // set authDataMap
+	
 
 				transactionAdditional.setAuthUrl(auth_3ds); // authurl is 3ds URL
 				String authdata64 = Base64Util.encodeBase64(jsonen(authDataMap));
@@ -1329,26 +1186,14 @@ public class PayinProcessingEngineController {
 				
 				transactionService.saves2sTransAdditional(transactionAdditional);
 			}
-			
-
-
-	        // Generate response map ===
-	       Map<String, Object> response = createSuccessResponse(savedTransaction, savedTransAdditional, baseUrl, encryptTransID);
-			//Map<String, Object> response = transactionService.getTransactionDetails(transID.toString(), false);
-	        
-	        // Add CORS headers for any domain access
+		    Map<String, Object> response = createSuccessResponse(savedTransaction, savedTransAdditional, baseUrl, encryptTransID);
 	        return ResponseEntity.ok().headers(createCorsHeaders()).body(response);
 
 	    } catch (Exception e) {
-	        // Add CORS headers for error responses too
 	        return ResponseEntity.badRequest().headers(createCorsHeaders()).body(createErrorResponse("500", "Internal Server Error: " + e.getMessage()));
 	    }
 	}
 	
-	/**
-	 * Helper method to create CORS headers for any domain access
-	 * This allows merchants from any domain to use the s2s endpoints
-	 */
 	private HttpHeaders createCorsHeaders() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Access-Control-Allow-Origin", "*");
@@ -1358,10 +1203,7 @@ public class PayinProcessingEngineController {
 		return headers;
 	}
 	
-	
-	// Method to generate a unique transID based on connector ID and saved transaction ID
-	// It uses the current date and time to create a unique identifier.
-    private Long generateUniqueTransID(String connectorId, Long savedTransactionId) {
+	    private Long generateUniqueTransID(String connectorId, Long savedTransactionId) {
 			String connectorPart = connectorId != null && !connectorId.isEmpty() ? connectorId : "";
 			String epochPart = String.valueOf(System.currentTimeMillis()); // 13 digits
 			String randomPart = String.format("%03d", new Random().nextInt(1000));
@@ -1375,8 +1217,6 @@ public class PayinProcessingEngineController {
 			return Long.parseLong(candidate);
     }
 
-    // Method to create a success response map
-	// It includes transaction details, status, and other relevant information.
     private Map<String, Object> createSuccessResponse(Transaction savedTransaction, TransactionAdditional transactionAdditional, String baseUrl, String encryptTransID) {
     	
     	String orderStatus = savedTransaction.getTransactionStatus() == null ? "0" : savedTransaction.getTransactionStatus().toString(); // Default to Pending
@@ -1390,7 +1230,6 @@ public class PayinProcessingEngineController {
 			transID = encryptTransID;
 		}
     	
-    	// Build response
     	Map<String, Object> response = new HashMap<>();
     	response.put("transID", savedTransaction.getTransID().toString());
     	response.put("order_status", orderStatus);
@@ -1400,19 +1239,15 @@ public class PayinProcessingEngineController {
 		if(transactionAdditional.getDescriptor() != null) {
     		response.put("descriptor", transactionAdditional.getDescriptor());
 		}
-
-    	// Replace with this code:
 		String formattedDate;
 		try {
 			LocalDateTime transactionDate = savedTransaction.getTransactionDate();
 			if (transactionDate != null) {
-				// Format LocalDateTime to include microseconds
 				formattedDate = transactionDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS"));
 			} else {
 				formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS"));
 			}
 		} catch (Exception e) {
-			// Fallback to current time if there's any error
 			formattedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS"));
 		}
 		response.put("tdate", formattedDate);
@@ -1424,30 +1259,20 @@ public class PayinProcessingEngineController {
     	response.put("reference", savedTransaction.getReference());
     	response.put("mop", savedTransaction.getMethodOfPayment());
     	
-    	String decryptedCCNO = transactionAdditional.getCcnoDecrypted(); // Decrypt ccno
-		String formattedCardNumber = transactionAdditional.getFormattedCardNumber(); // Decrypt ccno
+    	String decryptedCCNO = transactionAdditional.getCcnoDecrypted();
+		String formattedCardNumber = transactionAdditional.getFormattedCardNumber(); 
     	if(decryptedCCNO != null) {
-    		response.put("ccno", formattedCardNumber); // Mask after decryption
+    		response.put("ccno", formattedCardNumber); 
     	}
     	
     	response.put("rrn", transactionAdditional.getRrn());
     	response.put("upa", transactionAdditional.getUpa() == null ? "null" : transactionAdditional.getUpa());
-
     	response.put("authstatus", baseUrl + "authurl/s2s/" + savedTransaction.getTransID());
     	response.put("authurl", baseUrl + "authurl/" + transID);
-    	//response.put("authurl", transactionAdditional.getAuthUrl() == null ? "null" : transactionAdditional.getAuthUrl());
-		//response.put("authdata", transactionAdditional.getAuthData() == null ? "null" : transactionAdditional.getAuthData());
-    	//return ResponseEntity.ok(response);
-
-		// checkout-s2s value from integration_type of savedTransaction
+    	
 		if(savedTransaction.getIntegrationType() != null && savedTransaction.getIntegrationType().equals("checkout-s2s")) {
-
 			String authdata64 = transactionAdditional.getAuthData() == null ? "null" : transactionAdditional.getAuthData();
-			
-			// Step 1: Decode Base64 to get JSON string
-			String authDataJson = Base64Util.decodeBase64(authdata64);
-			
-			// Step 2: Parse JSON string to Map
+		    String authDataJson = Base64Util.decodeBase64(authdata64);
 			Map<String, Object> authDataMapDecode = new HashMap<>();
 			try {
 				if (authDataJson != null && !authDataJson.equals("null") && !authDataJson.isEmpty()) {
@@ -1457,44 +1282,10 @@ public class PayinProcessingEngineController {
 			} catch (Exception e) {
 				log.error("Failed to parse authdata JSON: {}", e.getMessage());
 			}
-
-			/*
-			 {
-				"transID": 121530251031100750,
-				"authdata": {
-					"payaddress": "bc1qf7sjx89dud3xkkqjfq78gl7wr8mummaqaywv2zdqpya56fyv4f9qvl6gpq",
-					"payamt": "0.01",
-					"coinName": "BTC",
-					"paycurrency": "USD",
-					"bill_amt": "60.00",
-					"bill_currency": "USD",
-					"note": "121114571753",
-					"orderId": "121114571753",
-					"sciName": null,
-					"savePaymentTemplate": null,
-					"paytitle": null,
-					"netWorkType": "BTC",
-					"dba": "12 & 121 - 130 | volet ",
-					"product_name": "Testing DEV Product",
-					"customer_service_email": "pg@paywb.co",
-					"action": "redirect",
-					"check_acquirer_status_in_realtime": "f"
-				},
-				"action": "redirect",
-				"payaddress": "bc1qf7sjx89dud3xkkqjfq78gl7wr8mummaqaywv2zdqpya56fyv4f9qvl6gpq",
-				"payamt": 60,
-				"paytitle": "Testing DEV Product",
-				"paycurrency": "USD"
-			}
-			*/
-
 			response.put("authdata", authDataMapDecode);
-
-			// Extract payaddress - check top level first, then nested authdata
 			if(authDataMapDecode.containsKey("payaddress") && authDataMapDecode.get("payaddress") != null && !authDataMapDecode.get("payaddress").toString().isEmpty()) {
 				response.put("payaddress", authDataMapDecode.get("payaddress"));
 			}
-			// Check if payaddress is nested inside authdata
 			else if(authDataMapDecode.containsKey("authdata") && authDataMapDecode.get("authdata") instanceof Map) {
 				@SuppressWarnings("unchecked")
 				Map<String, Object> nestedAuthData = (Map<String, Object>) authDataMapDecode.get("authdata");
@@ -1503,41 +1294,28 @@ public class PayinProcessingEngineController {
 				}
 			}
 
-			// Extract action
 			if(authDataMapDecode.containsKey("action") && authDataMapDecode.get("action") != null && !authDataMapDecode.get("action").toString().isEmpty()) {
 				response.put("action", authDataMapDecode.get("action"));
 			}
 			
-			// Extract payamt
 			if(authDataMapDecode.containsKey("payamt") && authDataMapDecode.get("payamt") != null) {
 				response.put("payamt", authDataMapDecode.get("payamt"));
 			}
 			
-			// Extract paytitle
 			if(authDataMapDecode.containsKey("paytitle") && authDataMapDecode.get("paytitle") != null && !authDataMapDecode.get("paytitle").toString().isEmpty()) {
 				response.put("paytitle", authDataMapDecode.get("paytitle"));
 			}
 			
-			// Extract paycurrency
 			if(authDataMapDecode.containsKey("coinName") && authDataMapDecode.get("coinName") != null && !authDataMapDecode.get("coinName").toString().isEmpty()) {
 				response.put("paycurrency", authDataMapDecode.get("coinName"));
 			}
 			else if(authDataMapDecode.containsKey("paycurrency") && authDataMapDecode.get("paycurrency") != null && !authDataMapDecode.get("paycurrency").toString().isEmpty()) {
 				response.put("paycurrency", authDataMapDecode.get("paycurrency"));
 			}
-
-			
 		}
-
-
-    	System.out.println("Response created with authurl: " + response.get("authurl"));
-
         return response;
     }
-    
-	// Method to create an error response map
-	// It includes error number, message, and status.
-	// This method is used to generate a consistent error response format.
+
     private Map<String, Object> createErrorResponse(String errorNumber, String errorMessage) {
         Map<String, Object> response = new HashMap<>();
         response.put("error_number", errorNumber);
@@ -1546,10 +1324,6 @@ public class PayinProcessingEngineController {
         return response;
     }
 
-
-	// Method to decode JSON string into a Map
-	// It uses ObjectMapper to convert JSON string to a Map object.
-	// This method is used to parse JSON data received from various sources.
 	private String getStatusDes(String statusCode) {
 	        switch (statusCode) {
 	        case "0": return "Pending";
@@ -1573,69 +1347,39 @@ public class PayinProcessingEngineController {
 	        default: return "Pending";
 	    }
 	}
-	
-	// Method to decode JSON string into a Map
-	// It uses ObjectMapper to convert JSON string to a Map object.
-	// This method is used to parse JSON data received from various sources.
+
 	private String maskCardNumber(String ccno) {
         if (ccno == null || ccno.length() < 10) {
             return ccno;
         }
         return ccno.substring(0, 6) + "XXXXXX" + ccno.substring(ccno.length() - 4);
     }
-	
-	
-	
-	/**
-	 * Extracts credentials from JSON configuration based on mode
-	 * @param jsonConfig The JSON configuration containing credentials
-	 * @param mode The mode ("1" for live, "0" for test)
-	 * @return A Map containing the credentials for the specified mode
-	 */
+
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> jsoncredentials(Map<String, Object> jsonConfig, String mode,Map<String, Object> connectorkey) {
 	    Map<String, Object> credentials = new HashMap<>();
 	    
 	    if (jsonConfig == null) {
-	        System.err.println("JSON config is null");
 	        return credentials;
 	    }
-	    
-	    // Check if mode is "1" (live mode)
-	    if ("1".equals(mode)) {
-	        // Get live credentials
+		    if ("1".equals(mode)) {
 	        if (jsonConfig.containsKey("live")) {
 	            credentials = (Map<String, Object>) jsonConfig.get("live");
-	            System.out.println("Using LIVE credentials");
-	        } else {
-	            System.err.println("Live credentials not found in connector config");
-	        }
+	        } 
 	    } 
-	    // Check if mode is "0" (test mode)
 	    else if ("0".equals(mode)) {
-	        // Get test credentials
 	        if (jsonConfig.containsKey("test")) {
 	            credentials = (Map<String, Object>) jsonConfig.get("test");
-	            System.out.println("Using TEST credentials");
-	        } else {
-	            System.err.println("Test credentials not found in connector config");
-	        }
-	    } else {
-	        System.err.println("Invalid connector mode: " + mode);
-	    }
+	        } 
+	    } 
 	    
-		
-		//Modify the connectorkey merge as a overwright with credentials. Credentials is previous key for check if paramater name is match then replace value from paramater of connectorkey or new paramater then add in credentials
 		if (connectorkey != null && !connectorkey.isEmpty()) {
 			for (Map.Entry<String, Object> entry : connectorkey.entrySet()) {
 				String key = entry.getKey();
 				Object value = entry.getValue();
-				// Check if the key already exists in credentials
 				if (credentials.containsKey(key)) {
-					// If it exists, replace the value with the new value from connectorkey
 					credentials.put(key, value);
 				} else {
-					// If it doesn't exist, add the new key-value pair
 					credentials.put(key, value);
 				}
 			}
@@ -1644,12 +1388,6 @@ public class PayinProcessingEngineController {
 	    return credentials;
 	}
 
-	
-	/**
-	 * Encodes a Map into a JSON string, handling multiple arrays or nested structures.
-	 * @param data The Map containing data to encode
-	 * @return A JSON string representation of the Map, or an empty string if encoding fails
-	 */
 	public static String jsonen(Map<String, Object> data) {
 	    if (data == null || data.isEmpty()) {
 	        return "";
@@ -1664,11 +1402,6 @@ public class PayinProcessingEngineController {
 	    }
 	}
 
-	/** 
-	 * Decode JSON string into a Map and handle nested JSON structures
-	 * @param jsonString The JSON string to decode from multiple JSON strings
-	 * @return A Map representation of the JSON, or empty Map if parsing fails
-	 */
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> jsonde(String jsonString) {
 	    if (jsonString == null || jsonString.isEmpty()) {
@@ -1679,27 +1412,18 @@ public class PayinProcessingEngineController {
 	    try {
 	        Map<String, Object> decodedMap = objectMapper.readValue(jsonString, Map.class);
 	        Map<String, Object> resultMap = new HashMap<>();
-
-	        // Iterate through the entries of the decoded JSON
 	        for (Map.Entry<String, Object> entry : decodedMap.entrySet()) {
 	            String key = entry.getKey();
 	            Object value = entry.getValue();
-
-	            // Check if the value is a nested JSON structure
 	            if (value instanceof Map) {
 	                @SuppressWarnings("unchecked")
 	                Map<String, Object> nestedMap = (Map<String, Object>) value;
-
-	                // Iterate through the nested map
 	                for (Map.Entry<String, Object> nestedEntry : nestedMap.entrySet()) {
 	                    String nestedKey = nestedEntry.getKey();
 	                    Object nestedValue = nestedEntry.getValue();
-
-	                    // Add the nested key-value pair to the result map
 	                    resultMap.put(key + "." + nestedKey, nestedValue);
 	                }
 	            } else {
-	                // Add the key-value pair to the result map
 	                resultMap.put(key, value);
 	            }
 	        }
@@ -1711,11 +1435,6 @@ public class PayinProcessingEngineController {
 	    }
 	}
 
-	/**
-	 * Decodes a JSON string into a Map
-	 * @param jsonString The JSON string to decode
-	 * @return A Map representation of the JSON, or empty Map if parsing fails
-	 */
 	@SuppressWarnings("unchecked")
 	public static Map<String, Object> jsondecode(String jsonString) {
 	    if (jsonString == null || jsonString.isEmpty()) {
@@ -1726,19 +1445,11 @@ public class PayinProcessingEngineController {
 	    try {
 	        return objectMapper.readValue(jsonString, Map.class);
 	    } catch (Exception e) {
-	        System.err.println("Error parsing JSON: " + e.getMessage());
 	        return new HashMap<>();
 	    }
 	}
-	
 
-	//Exchange rate API to be used for currency conversion from php code conver in java
-	
-	/**
-	 * Determines the appropriate scheme (http/https) based on request headers and environment
-	 */
 	private String determineScheme(HttpServletRequest request) {
-		// Prefer HTTP for local development hosts (localhost, 127.0.0.1, ::1, .local, 0.0.0.0)
 		String serverName = request.getServerName();
 		if (serverName != null) {
 			String lower = serverName.toLowerCase();
@@ -1747,31 +1458,24 @@ public class PayinProcessingEngineController {
 			}
 		}
 
-		// Honor explicit forwarded proto header if present (set by trusted proxies/load balancers)
 		String forwardedProto = request.getHeader("X-Forwarded-Proto");
 		if (forwardedProto != null && !forwardedProto.isEmpty()) {
-			// header may contain multiple values like "https,http" - take the first
 			String proto = forwardedProto.split(",")[0].trim();
 			if (!proto.isEmpty()) return proto.toLowerCase();
 		}
 
-		// If the servlet request already reports https, or port 443, prefer https
 		if ("https".equalsIgnoreCase(request.getScheme()) || request.getServerPort() == 443) {
 			return "https";
 		}
 
-		// For configured production domains, prefer HTTPS
 		if (serverName != null && isProductionDomain(serverName)) {
 			return "https";
 		}
 
-		// Default to the request scheme if none of the above matched
 		return request.getScheme();
 	}
 
-	/**
-	 * Checks if the given server name matches any of the configured production domains
-	 */
+
 	private boolean isProductionDomain(String serverName) {
 		if (serverName == null || productionDomains == null) {
 			return false;
