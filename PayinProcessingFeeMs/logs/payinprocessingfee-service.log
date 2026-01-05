@@ -1,0 +1,269 @@
+2026-01-05 12:22:56.604 [main] INFO  c.p.PayinProcessingFeeMsApplication - [/] Starting PayinProcessingFeeMsApplication using Java 21.0.9 with PID 22236 (E:\MsProject\PayinProcessingFeeMs\target\classes started by DELL in E:\MsProject\PayinProcessingFeeMs)
+2026-01-05 12:22:56.608 [main] INFO  c.p.PayinProcessingFeeMsApplication - [/] No active profile set, falling back to 1 default profile: "default"
+2026-01-05 12:22:56.679 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - [/] Fetching config from server at : http://localhost:8888
+2026-01-05 12:22:56.680 [main] INFO  o.s.c.c.c.ConfigServerConfigDataLoader - [/] Located environment: name=payinprocessingfee-service, profiles=[default], label=null, version=b2901c811cb8ae4e6fea1c794b70c0df921c6c8a, state=
+2026-01-05 12:22:57.956 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - [/] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-05 12:22:58.133 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - [/] Finished Spring Data repository scanning in 162 ms. Found 1 JPA repository interface.
+2026-01-05 12:22:58.362 [main] INFO  o.s.cloud.context.scope.GenericScope - [/] BeanFactory id=93b193c1-c952-3067-bb40-70fa706a3491
+2026-01-05 12:22:58.823 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - [/] Tomcat initialized with port 8082 (http)
+2026-01-05 12:22:58.845 [main] INFO  o.a.coyote.http11.Http11NioProtocol - [/] Initializing ProtocolHandler ["http-nio-8082"]
+2026-01-05 12:22:58.846 [main] INFO  o.a.catalina.core.StandardService - [/] Starting service [Tomcat]
+2026-01-05 12:22:58.846 [main] INFO  o.a.catalina.core.StandardEngine - [/] Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-01-05 12:22:58.934 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - [/] Initializing Spring embedded WebApplicationContext
+2026-01-05 12:22:58.935 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - [/] Root WebApplicationContext: initialization completed in 2251 ms
+2026-01-05 12:22:59.582 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] Class org.postgresql.Driver found in Thread context class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528
+2026-01-05 12:22:59.725 [main] INFO  o.h.jpa.internal.util.LogHelper - [/] HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-05 12:22:59.801 [main] INFO  org.hibernate.Version - [/] HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-01-05 12:22:59.842 [main] INFO  o.h.c.i.RegionFactoryInitiator - [/] HHH000026: Second-level cache disabled
+2026-01-05 12:23:00.235 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - [/] No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-05 12:23:00.274 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] HikariPool-1 - configuration:
+2026-01-05 12:23:00.275 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] allowPoolSuspension.............false
+2026-01-05 12:23:00.276 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] autoCommit......................true
+2026-01-05 12:23:00.276 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] catalog.........................none
+2026-01-05 12:23:00.276 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] connectionInitSql...............none
+2026-01-05 12:23:00.276 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] connectionTestQuery.............none
+2026-01-05 12:23:00.278 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] connectionTimeout...............30000
+2026-01-05 12:23:00.278 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] credentials.....................com.zaxxer.hikari.util.Credentials@da4c5cb
+2026-01-05 12:23:00.278 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] dataSource......................none
+2026-01-05 12:23:00.278 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] dataSourceClassName.............none
+2026-01-05 12:23:00.278 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] dataSourceJNDI..................none
+2026-01-05 12:23:00.278 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] dataSourceProperties............{password=<masked>}
+2026-01-05 12:23:00.279 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] driverClassName................."org.postgresql.Driver"
+2026-01-05 12:23:00.279 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] exceptionOverride...............none
+2026-01-05 12:23:00.279 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] exceptionOverrideClassName......none
+2026-01-05 12:23:00.280 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] healthCheckProperties...........{}
+2026-01-05 12:23:00.280 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] healthCheckRegistry.............none
+2026-01-05 12:23:00.280 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] idleTimeout.....................30000
+2026-01-05 12:23:00.280 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] initializationFailTimeout.......1
+2026-01-05 12:23:00.280 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] isolateInternalQueries..........false
+2026-01-05 12:23:00.280 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] jdbcUrl.........................jdbc:postgresql://localhost:5432/payin_processing_fee_db
+2026-01-05 12:23:00.280 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] keepaliveTime...................120000
+2026-01-05 12:23:00.281 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] leakDetectionThreshold..........0
+2026-01-05 12:23:00.281 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] maxLifetime.....................1800000
+2026-01-05 12:23:00.281 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] maximumPoolSize.................20
+2026-01-05 12:23:00.281 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] metricRegistry..................none
+2026-01-05 12:23:00.281 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] metricsTrackerFactory...........none
+2026-01-05 12:23:00.281 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] minimumIdle.....................5
+2026-01-05 12:23:00.281 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] password........................<masked>
+2026-01-05 12:23:00.282 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] poolName........................"HikariPool-1"
+2026-01-05 12:23:00.282 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] readOnly........................false
+2026-01-05 12:23:00.283 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] registerMbeans..................false
+2026-01-05 12:23:00.283 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] scheduledExecutor...............none
+2026-01-05 12:23:00.283 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] schema..........................none
+2026-01-05 12:23:00.284 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] threadFactory...................internal
+2026-01-05 12:23:00.285 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] transactionIsolation............default
+2026-01-05 12:23:00.287 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] username........................"postgres"
+2026-01-05 12:23:00.287 [main] DEBUG com.zaxxer.hikari.HikariConfig - [/] validationTimeout...............5000
+2026-01-05 12:23:00.287 [main] INFO  com.zaxxer.hikari.HikariDataSource - [/] HikariPool-1 - Starting...
+2026-01-05 12:23:00.303 [main] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Attempting to create/setup new connection (bad5e890-498f-4179-b215-96bdf2802405)
+2026-01-05 12:23:00.510 [main] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Established new connection (bad5e890-498f-4179-b215-96bdf2802405)
+2026-01-05 12:23:00.512 [main] INFO  com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1ec09a68
+2026-01-05 12:23:00.516 [main] INFO  com.zaxxer.hikari.HikariDataSource - [/] HikariPool-1 - Start completed.
+2026-01-05 12:23:00.559 [main] WARN  org.hibernate.orm.deprecation - [/] HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-01-05 12:23:00.585 [main] INFO  o.hibernate.orm.connections.pooling - [/] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-05 12:23:00.630 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=1/20, idle=1/5, active=0, waiting=0)
+2026-01-05 12:23:00.632 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=1/20, idle=1/5, active=0, waiting=0)
+2026-01-05 12:23:00.633 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Attempting to create/setup new connection (03bc401e-b3f4-4537-be55-96ae8105326f)
+2026-01-05 12:23:00.726 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Established new connection (03bc401e-b3f4-4537-be55-96ae8105326f)
+2026-01-05 12:23:00.726 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2d616190
+2026-01-05 12:23:00.772 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After adding stats (total=2/20, idle=2/5, active=0, waiting=0)
+2026-01-05 12:23:00.772 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Attempting to create/setup new connection (8f91d0d3-d17c-4580-b79f-d39112192eba)
+2026-01-05 12:23:00.872 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Established new connection (8f91d0d3-d17c-4580-b79f-d39112192eba)
+2026-01-05 12:23:00.872 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@23a68a4c
+2026-01-05 12:23:00.913 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After adding stats (total=3/20, idle=3/5, active=0, waiting=0)
+2026-01-05 12:23:00.913 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Attempting to create/setup new connection (9f3b5dd0-ca1f-4a3d-84e4-120bf06842cd)
+2026-01-05 12:23:01.002 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Established new connection (9f3b5dd0-ca1f-4a3d-84e4-120bf06842cd)
+2026-01-05 12:23:01.002 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@27990ae0
+2026-01-05 12:23:01.036 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After adding stats (total=4/20, idle=4/5, active=0, waiting=0)
+2026-01-05 12:23:01.036 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Attempting to create/setup new connection (2d390b34-664b-4f0a-9816-51bb420df825)
+2026-01-05 12:23:01.222 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Established new connection (2d390b34-664b-4f0a-9816-51bb420df825)
+2026-01-05 12:23:01.222 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@629b8077
+2026-01-05 12:23:01.255 [HikariPool-1:connection-adder] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After adding stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:23:01.632 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - [/] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-05 12:23:01.719 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - [/] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-05 12:23:02.317 [main] INFO  o.s.c.o.FeignClientFactoryBean - [/] For 'connector-service' URL not provided. Will try picking an instance via load-balancing.
+2026-01-05 12:23:03.265 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - [/] Eureka HTTP Client uses RestTemplate.
+2026-01-05 12:23:03.294 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - [/] Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-01-05 12:23:03.315 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - [/] Exposing 2 endpoints beneath base path '/actuator'
+2026-01-05 12:23:03.511 [main] INFO  o.s.c.n.eureka.InstanceInfoFactory - [/] Setting initial instance status as: STARTING
+2026-01-05 12:23:03.559 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Initializing Eureka in region us-east-1
+2026-01-05 12:23:03.568 [main] INFO  c.n.d.s.r.aws.ConfigClusterResolver - [/] Resolving eureka endpoints via configuration
+2026-01-05 12:23:03.588 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Disable delta property : false
+2026-01-05 12:23:03.588 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Single vip registry refresh property : null
+2026-01-05 12:23:03.588 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Force full registry fetch : false
+2026-01-05 12:23:03.588 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Application is null : false
+2026-01-05 12:23:03.588 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Registered Applications size is zero : true
+2026-01-05 12:23:03.588 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Application version is -1: true
+2026-01-05 12:23:03.588 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Getting all instance registry info from the eureka server
+2026-01-05 12:23:04.062 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] The response status is 200
+2026-01-05 12:23:04.069 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Starting heartbeat executor: renew interval is: 30
+2026-01-05 12:23:04.076 [main] INFO  c.n.discovery.InstanceInfoReplicator - [/] InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-01-05 12:23:04.080 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Discovery Client initialized at timestamp 1767595984079 with initial instances count: 2
+2026-01-05 12:23:04.091 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - [/] Registering application PAYINPROCESSINGFEE-SERVICE with eureka with status UP
+2026-01-05 12:23:04.092 [main] INFO  c.netflix.discovery.DiscoveryClient - [/] Saw local status change event StatusChangeEvent [timestamp=1767595984092, current=UP, previous=STARTING]
+2026-01-05 12:23:04.096 [main] INFO  o.a.coyote.http11.Http11NioProtocol - [/] Starting ProtocolHandler ["http-nio-8082"]
+2026-01-05 12:23:04.098 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - [/] DiscoveryClient_PAYINPROCESSINGFEE-SERVICE/DESKTOP-8GQH33E:payinprocessingfee-service:8082: registering service...
+2026-01-05 12:23:04.131 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - [/] Tomcat started on port 8082 (http) with context path '/'
+2026-01-05 12:23:04.134 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - [/] Updating port to 8082
+2026-01-05 12:23:04.207 [main] INFO  c.p.PayinProcessingFeeMsApplication - [/] Started PayinProcessingFeeMsApplication in 14.957 seconds (process running for 16.125)
+2026-01-05 12:23:04.243 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - [/] DiscoveryClient_PAYINPROCESSINGFEE-SERVICE/DESKTOP-8GQH33E:payinprocessingfee-service:8082 - registration status: 204
+2026-01-05 12:23:04.684 [RMI TCP Connection(5)-127.0.0.1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - [/] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-05 12:23:04.686 [RMI TCP Connection(5)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - [/] Initializing Servlet 'dispatcherServlet'
+2026-01-05 12:23:04.689 [RMI TCP Connection(5)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - [/] Completed initialization in 3 ms
+2026-01-05 12:23:05.276 [AsyncReporter{ZipkinHttpClientSender{http://localhost:9411/api/v2/spans}}] WARN  z.r.i.AsyncReporter$BoundedAsyncReporter - [/] Spans were dropped due to exceptions. All subsequent errors will be logged at FINE level.
+2026-01-05 12:23:05.277 [AsyncReporter{ZipkinHttpClientSender{http://localhost:9411/api/v2/spans}}] WARN  z.r.i.AsyncReporter$BoundedAsyncReporter - [/] Dropped 2 spans due to ConnectException()
+java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:955)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:133)
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.ZipkinHttpClientSender.postSpans(ZipkinHttpClientSender.java:60)
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.HttpSender.postSpans(HttpSender.java:69)
+	at org.springframework.boot.actuate.autoconfigure.tracing.zipkin.HttpSender.postSpans(HttpSender.java:41)
+	at zipkin2.reporter.BaseHttpSender.send(BaseHttpSender.java:123)
+	at zipkin2.reporter.internal.AsyncReporter$BoundedAsyncReporter.flush(AsyncReporter.java:266)
+	at zipkin2.reporter.internal.AsyncReporter$Flusher.run(AsyncReporter.java:352)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1065)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:227)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.checkRetryConnect(PlainHttpConnection.java:280)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$2(PlainHttpConnection.java:238)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934)
+	at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(CompletableFuture.java:911)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	... 1 common frames omitted
+Caused by: java.nio.channels.ClosedChannelException
+	at java.base/sun.nio.ch.SocketChannelImpl.ensureOpen(SocketChannelImpl.java:202)
+	at java.base/sun.nio.ch.SocketChannelImpl.beginConnect(SocketChannelImpl.java:786)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:874)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$1(PlainHttpConnection.java:210)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:212)
+	... 9 common frames omitted
+2026-01-05 12:23:30.636 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:23:30.637 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:23:30.637 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:24:00.649 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:24:00.650 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:24:00.650 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:24:30.661 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:24:30.662 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:24:30.662 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:24:38.456 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@27990ae0 is alive
+2026-01-05 12:24:39.622 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@2d616190 is alive
+2026-01-05 12:24:42.192 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@23a68a4c is alive
+2026-01-05 12:24:48.738 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@629b8077 is alive
+2026-01-05 12:24:50.127 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@1ec09a68 is alive
+2026-01-05 12:25:00.670 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:25:00.671 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:25:00.671 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:25:27.669 [http-nio-8082-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - [695b605f5e8dca2bb773691244e3a81c/b773691244e3a81c] Setting JDBC Connection [HikariProxyConnection@1680831550 wrapping org.postgresql.jdbc.PgConnection@1ec09a68] read-only
+2026-01-05 12:25:28.043 [http-nio-8082-exec-1] DEBUG o.s.jdbc.datasource.DataSourceUtils - [695b605f5e8dca2bb773691244e3a81c/b773691244e3a81c] Resetting read-only flag of JDBC Connection [HikariProxyConnection@1680831550 wrapping org.postgresql.jdbc.PgConnection@1ec09a68]
+2026-01-05 12:25:30.677 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:25:30.678 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:25:30.679 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:26:00.690 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:26:00.691 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:26:00.692 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:26:15.908 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@27990ae0 is alive
+2026-01-05 12:26:18.514 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@2d616190 is alive
+2026-01-05 12:26:23.514 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@23a68a4c is alive
+2026-01-05 12:26:30.694 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:26:30.694 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:26:30.694 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:26:36.259 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@629b8077 is alive
+2026-01-05 12:26:39.743 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@1ec09a68 is alive
+2026-01-05 12:27:00.703 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:27:00.703 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:27:00.703 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:27:30.710 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:27:30.710 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:27:30.710 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:27:53.360 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@27990ae0 is alive
+2026-01-05 12:27:57.416 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@2d616190 is alive
+2026-01-05 12:28:00.712 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:28:00.713 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:28:00.713 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:28:03.592 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - [/] Resolving eureka endpoints via configuration
+2026-01-05 12:28:04.838 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@23a68a4c is alive
+2026-01-05 12:28:23.788 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@629b8077 is alive
+2026-01-05 12:28:29.372 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@1ec09a68 is alive
+2026-01-05 12:28:30.726 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:28:30.726 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:28:30.726 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:29:00.740 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:29:00.740 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:29:00.741 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:29:30.753 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:29:30.754 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:29:30.754 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:29:30.815 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@27990ae0 is alive
+2026-01-05 12:29:36.315 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@2d616190 is alive
+2026-01-05 12:29:46.163 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@23a68a4c is alive
+2026-01-05 12:30:00.769 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:30:00.769 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:30:00.769 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:30:11.313 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@629b8077 is alive
+2026-01-05 12:30:18.996 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@1ec09a68 is alive
+2026-01-05 12:30:30.772 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:30:30.772 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:30:30.773 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:31:00.779 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:31:00.779 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:31:00.780 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:31:08.264 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@27990ae0 is alive
+2026-01-05 12:31:15.211 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@2d616190 is alive
+2026-01-05 12:31:27.492 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@23a68a4c is alive
+2026-01-05 12:31:30.786 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:31:30.786 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:31:30.786 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:31:58.841 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@629b8077 is alive
+2026-01-05 12:32:00.799 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:32:00.799 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:32:00.799 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:32:08.614 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@1ec09a68 is alive
+2026-01-05 12:32:30.812 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:32:30.812 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:32:30.813 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:32:45.722 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@27990ae0 is alive
+2026-01-05 12:32:54.112 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@2d616190 is alive
+2026-01-05 12:33:00.819 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:33:00.819 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:33:00.820 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:33:03.598 [AsyncResolver-bootstrap-executor-%d] INFO  c.n.d.s.r.aws.ConfigClusterResolver - [/] Resolving eureka endpoints via configuration
+2026-01-05 12:33:08.823 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - keepalive: connection org.postgresql.jdbc.PgConnection@23a68a4c is alive
+2026-01-05 12:33:30.830 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:33:30.830 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  cleanup stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:33:30.831 [HikariPool-1:housekeeper] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Fill pool skipped, pool has sufficient level or currently being filled.
+2026-01-05 12:33:41.743 [RMI TCP Connection(17)-127.0.0.1] INFO  o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - [/] Application shutdown requested.
+2026-01-05 12:33:41.745 [RMI TCP Connection(17)-127.0.0.1] INFO  o.s.c.n.e.s.EurekaServiceRegistry - [/] Unregistering application PAYINPROCESSINGFEE-SERVICE with eureka with status DOWN
+2026-01-05 12:33:41.745 [RMI TCP Connection(17)-127.0.0.1] INFO  c.netflix.discovery.DiscoveryClient - [/] Saw local status change event StatusChangeEvent [timestamp=1767596621745, current=DOWN, previous=UP]
+2026-01-05 12:33:41.746 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - [/] DiscoveryClient_PAYINPROCESSINGFEE-SERVICE/DESKTOP-8GQH33E:payinprocessingfee-service:8082: registering service...
+2026-01-05 12:33:41.755 [RMI TCP Connection(17)-127.0.0.1] INFO  o.s.b.w.e.tomcat.GracefulShutdown - [/] Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-05 12:33:41.757 [tomcat-shutdown] INFO  o.a.coyote.http11.Http11NioProtocol - [/] Pausing ProtocolHandler ["http-nio-8082"]
+2026-01-05 12:33:41.768 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  c.netflix.discovery.DiscoveryClient - [/] DiscoveryClient_PAYINPROCESSINGFEE-SERVICE/DESKTOP-8GQH33E:payinprocessingfee-service:8082 - registration status: 204
+2026-01-05 12:33:41.781 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - [/] Graceful shutdown complete
+2026-01-05 12:33:41.782 [RMI TCP Connection(17)-127.0.0.1] INFO  o.a.coyote.http11.Http11NioProtocol - [/] Stopping ProtocolHandler ["http-nio-8082"]
+2026-01-05 12:33:41.791 [RMI TCP Connection(17)-127.0.0.1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - [/] Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-05 12:33:41.795 [RMI TCP Connection(17)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - [/] HikariPool-1 - Shutdown initiated...
+2026-01-05 12:33:41.795 [RMI TCP Connection(17)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - Before shutdown stats (total=5/20, idle=5/5, active=0, waiting=0)
+2026-01-05 12:33:41.796 [HikariPool-1:connection-closer] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@1ec09a68: (connection evicted)
+2026-01-05 12:33:41.797 [HikariPool-1:connection-closer] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@2d616190: (connection evicted)
+2026-01-05 12:33:41.797 [HikariPool-1:connection-closer] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@23a68a4c: (connection evicted)
+2026-01-05 12:33:41.797 [HikariPool-1:connection-closer] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@27990ae0: (connection evicted)
+2026-01-05 12:33:41.797 [HikariPool-1:connection-closer] DEBUG com.zaxxer.hikari.pool.PoolBase - [/] HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@629b8077: (connection evicted)
+2026-01-05 12:33:41.799 [RMI TCP Connection(17)-127.0.0.1] DEBUG com.zaxxer.hikari.pool.HikariPool - [/] HikariPool-1 - After  shutdown stats (total=0/20, idle=0/5, active=0, waiting=0)
+2026-01-05 12:33:41.800 [RMI TCP Connection(17)-127.0.0.1] INFO  com.zaxxer.hikari.HikariDataSource - [/] HikariPool-1 - Shutdown completed.
+2026-01-05 12:33:42.599 [RMI TCP Connection(17)-127.0.0.1] INFO  c.netflix.discovery.DiscoveryClient - [/] Shutting down DiscoveryClient ...
+2026-01-05 12:33:45.609 [RMI TCP Connection(17)-127.0.0.1] INFO  c.netflix.discovery.DiscoveryClient - [/] Unregistering ...
+2026-01-05 12:33:45.630 [RMI TCP Connection(17)-127.0.0.1] INFO  c.netflix.discovery.DiscoveryClient - [/] DiscoveryClient_PAYINPROCESSINGFEE-SERVICE/DESKTOP-8GQH33E:payinprocessingfee-service:8082 - deregister  status: 200
+2026-01-05 12:33:45.631 [RMI TCP Connection(17)-127.0.0.1] INFO  c.netflix.discovery.DiscoveryClient - [/] Completed shut down of DiscoveryClient
